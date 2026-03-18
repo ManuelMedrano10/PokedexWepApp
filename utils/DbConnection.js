@@ -13,7 +13,7 @@ if (process.env.DB_DIALECT === "sqlite") {
             process.env.DB_FILENAME
         ),
     });
-} else if (process.env.DB_DIALECT === "tedious") {
+} else if (process.env.DB_DIALECT === "mariadb") {
     connection = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
         dialect: process.env.DB_DIALECT,
         host: process.env.DB_HOST,

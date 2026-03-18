@@ -64,13 +64,13 @@
 <div class="row">
     {{#each pokemonsList}}
     <div class="col-12 col-sm-3 mb-5">
-        <div class="card">
+        <div class="card mb-3">
             <img src="{{this.photo}}" class="card-img-top img-size" alt="{{this.name}}">
             <div class="card-body">
                 <h5 class="card-title">Name: {{this.name}}</h5>
                 <p class="card-text fw-semibold">Region: <span class="fw-normal">{{this.Region.name}}</span></p>
-                <p class="card-text fw-semibold">Primary type: <span class="fw-normal">{{this.Type.name}}</span></p>
-                <p class="card-text fw-semibold">Secondary type: <span class="fw-normal">{{this.Type.name}}</span></p>
+                <p class="card-text fw-semibold">Primary type: <span class="fw-normal">{{this.PrimaryType.name}}</span></p>
+                <p class="card-text fw-semibold">Secondary type: <span class="fw-normal">{{this.SecondaryType.name}}</span></p>
             </div>
         </div>
     </div>

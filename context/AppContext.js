@@ -18,11 +18,11 @@ RegionsModel.hasMany(PokemonsModel, {foreignKey: "regionId"});
 PokemonsModel.belongsTo(RegionsModel, {foreignKey: "regionId"});
 
 //pokemon-types relation
-TypesModel.hasMany(PokemonsModel, {foreignKey: "primaryTypeId"});
-PokemonsModel.belongsTo(TypesModel, {foreignKey: "primaryTypeId"});
+TypesModel.hasMany(PokemonsModel, {as: 'PrimaryType', foreignKey: "primaryTypeId"});
+PokemonsModel.belongsTo(TypesModel, {as: 'PrimaryType', foreignKey: "primaryTypeId"});
 
-TypesModel.hasMany(PokemonsModel, {foreignKey: "secondaryTypeId"});
-PokemonsModel.belongsTo(TypesModel, {foreignKey: "secondaryTypeId"});
+TypesModel.hasMany(PokemonsModel, {as: 'SecondaryType', foreignKey: "secondaryTypeId"});
+PokemonsModel.belongsTo(TypesModel, {as: 'SecondaryType', foreignKey: "secondaryTypeId"});
 
 export default{
     sequelize: connection,

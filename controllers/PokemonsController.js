@@ -1,7 +1,10 @@
 import context from "../context/AppContext.js";
 
 export function GetIndex(req, res, next) {
-    context.PokemonsModel.findAll({ include: [{ model: context.TypesModel },{ model: context.RegionsModel }] })
+    context.PokemonsModel.findAll({ include: [
+        { model: context.TypesModel, as: 'PrimaryType' }, 
+        { model: context.TypesModel, as: 'SecondaryType' }, 
+        { model: context.RegionsModel }] })
         .then((result) => {
             const pokemons = result.map((result) => result.get({ plain: true }));
 

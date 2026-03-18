@@ -1,8 +1,8 @@
 $(document).ready(function () {
-    $('.delete-pokemon').on('click', function(e){
+    $('.delete-pokemons').on('click', function(e){
         e.preventDefault();
         const form = $(this).closest('form');
-        if(confirm('Are you sure you want to delete this pokemon?')){
+        if(confirm('Are you sure you want to delete this region?')){
             form.submit();
         }
     });

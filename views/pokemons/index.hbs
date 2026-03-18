@@ -17,13 +17,13 @@
             <div class="card-body">
                 <h5 class="card-title">Name: {{this.name}}</h5>
                 <p class="card-text fw-semibold">Region: <span class="fw-normal">{{this.Region.name}}</span></p>
-                <p class="card-text fw-semibold">Primary type: <span class="fw-normal">{{this.Type.name}}</span></p>
-                <p class="card-text fw-semibold">Secondary type: <span class="fw-normal">{{this.Type.name}}</span></p>
+                <p class="card-text fw-semibold">Primary type: <span class="fw-normal">{{this.PrimaryType.name}}</span></p>
+                <p class="card-text fw-semibold">Secondary type: <span class="fw-normal">{{this.SecondaryType.name}}</span></p>
                 <div class="mt-2">
                     <a href="/pokemons/edit/{{this.id}}" class="btn btn-primary float-end"><i class="bi bi-pencil-square"></i> Edit</a>
                     <form method="post" action="/pokemons/delete">
                         <input type="hidden" value="{{this.id}}" name="pokemonId">
-                        <button type="submit" class="btn btn-danger float-end me-2 delete-pokemon"><i
+                        <button type="submit" class="btn btn-danger float-end me-2 delete-pokemons"><i
                                 class="bi bi-trash"></i> Delete</button>
                     </form>
                 </div>
@@ -40,5 +40,5 @@
 </div>
 {{/if}}
 {{#section 'scripts'}}
-    <script src="/assets/js/site/pokemons.js"></script>
+    <script src="/assets/js/site/pokemons/pokemon.js"></script>
 {{/section}}
