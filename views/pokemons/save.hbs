@@ -1,0 +1,97 @@
+{{#if hasTypes}}
+
+{{#if hasRegions}}
+<div class="row d-flex justify-content-center">
+    <div class="col-12 col-sm-6">
+        <div class="card">
+            <div class="card-header bg-secondary">
+                <h5 class="text-light text-center"><i class="bi bi-tv"></i>{{#if editMode}} Edit Pokemon
+                    {{pokemon.name}}
+                    {{else}} New Pokemon {{/if}}</h5>
+            </div>
+            <div class="card-body">
+                <form action="/pokemons/{{#if editMode}}edit{{else}}create{{/if}}" method="post">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name: <span class="text-danger">*</span></label>
+                        <input type="text" value="{{#if editMode}}{{pokemon.name}}{{/if}}" class="form-control"
+                            name="name" id="name" required="required">
+                    </div>
+                    <div class="mb-3">
+                        <label for="photo" class="form-label">Photo: <span class="text-danger">*</span></label>
+                        <input type="text" value="{{#if editMode}}{{pokemon.photo}}{{/if}}" class="form-control"
+                            name="photo" id="photo" required="required">
+                    </div>
+                    <div class="mb-3">
+                        <label for="primary-type" class="form-label">Primary type: <span
+                                class="text-danger">*</span></label>
+                        <select name="primaryTypeId" class="form-select" id="primary-type" required="required">
+                            <option value="">Select an option</option>
+                            {{#each typesList}}
+                            <option value="{{this.id}}" {{#if (eq this.id ../pokemon.primaryTypeId)}}selected{{/if}}>
+                                {{this.name}}
+                            </option>
+                            {{/each}}
+
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="secondary-type" class="form-label">Secondary type: <span
+                                class="text-danger">*</span></label>
+                        <select name="secondaryTypeId" class="form-select" id="primary-type" required="required">
+                            <option value="">Select an option</option>
+                            {{#each typesList}}
+                            <option value="{{this.id}}" {{#if (eq this.id ../pokemon.secondaryTypeId)}}selected{{/if}}>
+                                {{this.name}}
+                            </option>
+                            {{/each}}
+
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pokemon-region" class="form-label">Region: <span
+                                class="text-danger">*</span></label>
+                        <select name="regionId" class="form-select" id="pokemon-region" required="required">
+                            <option value="">Select an option</option>
+                            {{#each regionsList}}
+                            <option value="{{this.id}}" {{#if (eq this.id ../pokemon.regionId)}}selected{{/if}}>
+                                {{this.name}}
+                            </option>
+                            {{/each}}
+
+                        </select>
+                    </div>
+
+                    {{#if editMode}}
+                    <input type="hidden" name="pokemonId" value="{{pokemon.id}}">
+                    {{/if}}
+
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-success float-end"><i class="bi bi-bookmark"></i>
+                            Save</button>
+                        <a href="/pokemons/index" class="btn btn-outline-warning float-end me-2"><i
+                                class="bi bi-door-open"></i> Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{else}}
+<div class="row d-flex justify-content-center">
+    <div class="col-12 col-sm-8 py-5 alert alert-info" role="alert">
+        <h2 class="display-5 fw-semibold text-center">You have not registered any regions.</h2>
+        <p class="fw-medium fs-5"><a href="/regions/create">Create one</a> to be able to add a region.</p>
+    </div>
+</div>
+{{/if}}
+
+{{else}}
+<div class="row d-flex justify-content-center">
+    <div class="col-12 col-sm-8 py-5 alert alert-info" role="alert">
+        <h2 class="display-5 fw-semibold text-center">You have not registered any types.</h2>
+        <p class="fw-medium fs-5"><a href="/types/create">Create one</a> to be able to add a type.</p>
+    </div>
+</div>
+
+{{/if}}

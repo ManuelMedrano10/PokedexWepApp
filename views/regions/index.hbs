@@ -1,0 +1,42 @@
+<div class="row">
+    <h1 class="text-center display-4 fw-semibold">Regions List</h1>
+</div>
+
+<div class="row mt-2 mb-2">
+    <div class="col-12 col-sm-6">
+        <a href="/regions/create" class="btn btn-success"><i class="bi bi-plus-square"></i> Add Regions</a>
+    </div>
+</div>
+
+{{#if hasRegions}}
+<div class="row">
+    {{#each regionsList}}
+    <div class="col-12 col-sm-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{this.name}}</h5>
+                <div class="mt-2">
+                    <a href="/regions/edit/{{this.id}}" class="btn btn-outline-primary float-end"><i class="bi bi-pencil-square"></i> </a>
+                    <form method="post" action="/regions/delete">
+                        <input type="hidden" value="{{this.id}}" name="regionId">
+                        <button type="submit" class="btn btn-outline-danger float-end me-2 delete-regions"><i
+                                class="bi bi-trash"></i> </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{else}}
+
+<div class="row d-flex justify-content-center">
+    <div class="col-12 col-sm-8 py-5 alert alert-info" role="alert">
+        <h2 class="display-5 fw-semibold text-center">You have not registered any regions.</h2>
+    </div>
+</div>
+
+{{/if}}
+{{#section 'scripts'}}
+    <script src="/assets/js/site/regions.js"></script>
+{{/section}}

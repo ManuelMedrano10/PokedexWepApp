@@ -1,0 +1,88 @@
+<div class="row">
+    <h1 class="text-center display-4 fw-semibold">Pokedex</h1>
+</div>
+
+<div class="row mt-2 mb-2">
+    <div class="col-12 d-flex justify-content-center">
+        <div class="col-md-4 me-2">
+            <form method="post" action="/filter-by-name">
+                <div class="d-flex justify-content-between">
+                    <div class="input-group me-1">
+                        <span class="input-group-text">Name:</span>
+                        <input type="text" class="form-control" name="name">
+                    </div>
+                    <div class="col-md-2 d-grid gap-2">
+                        <button type="submit" class="btn btn-secondary float-start">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-12 col-md-4 me-2">
+            <form method="post" action="/filter-by-region">
+                <div class="d-flex justify-content-between">
+                    <div class="input-group me-1">
+                        <span class="input-group-text">Region:</span>
+                        <select class="form-select" name="regionId">
+                            <option value="">Select an option</option>
+                            {{#each regionsList}}
+                            <option value="{{this.id}}" {{#if (eq this.id ../pokemon.regionId)}}selected{{/if}}>
+                                {{this.name}}
+                            </option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="col-md-2 d-grid gap-2">
+                        <button type="submit" class="btn btn-secondary float-start">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-12 col-md-4 me-2">
+            <form method="post" action="/filter-by-type">
+                <div class="d-flex justify-content-between">
+                    <div class="input-group me-1">
+                        <span class="input-group-text">Type:</span>
+                        <select class="form-select" name="typeId">
+                            <option value="">Select an option</option>
+                            {{#each typesList}}
+                            <option value="{{this.id}}" {{#if (eq this.id ../pokemon.typeId)}}selected{{/if}}>
+                                {{this.name}}
+                            </option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="col-md-2 d-grid gap-2">
+                        <button type="submit" class="btn btn-secondary float-start">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{{#if hasPokemons}}
+<div class="row">
+    {{#each pokemonsList}}
+    <div class="col-12 col-sm-3 mb-5">
+        <div class="card">
+            <img src="{{this.photo}}" class="card-img-top img-size" alt="{{this.name}}">
+            <div class="card-body">
+                <h5 class="card-title">Name: {{this.name}}</h5>
+                <p class="card-text fw-semibold">Region: <span class="fw-normal">{{this.Region.name}}</span></p>
+                <p class="card-text fw-semibold">Primary type: <span class="fw-normal">{{this.Type.name}}</span></p>
+                <p class="card-text fw-semibold">Secondary type: <span class="fw-normal">{{this.Type.name}}</span></p>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{else}}
+<div class="row d-flex justify-content-center">
+    <div class="col-12 col-sm-8 py-5 alert alert-info" role="alert">
+        <h2 class="display-5 fw-semibold text-center">You have not registered any pokemons.</h2>
+    </div>
+</div>
+{{/if}}
+{{#section 'scripts'}}
+    <script src="/assets/js/site/pokemons.js"></script>
+{{/section}}

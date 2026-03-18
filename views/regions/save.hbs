@@ -1,0 +1,30 @@
+<div class="row d-flex justify-content-center">
+    <div class="col-12 col-sm-4">
+        <div class="card">
+            <div class="card-header bg-secondary">
+                <h5 class="text-light text-center"><i class="bi bi-tv"></i>{{#if editMode}} Edit region {{region.name}}
+                    {{else}} New region {{/if}}</h5>
+            </div>
+            <div class="card-body">
+                <form action="/regions/{{#if editMode}}edit{{else}}create{{/if}}" method="post">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name: <span class="text-danger">*</span></label>
+                        <input type="text" value="{{#if editMode}}{{region.name}}{{/if}}" class="form-control"
+                            name="name" id="name" required="required">
+                    </div>
+
+                    {{#if editMode}}
+                    <input type="hidden" name="regionId" value="{{region.id}}">
+                    {{/if}}
+
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-info float-end"><i class="bi bi-bookmark"></i>
+                            Save</button>
+                        <a href="/regions/index" class="btn btn-outline-warning float-end me-2"><i
+                                class="bi bi-door-open"></i> Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
